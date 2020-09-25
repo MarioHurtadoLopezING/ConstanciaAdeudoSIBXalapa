@@ -18,7 +18,7 @@
     <?php echo form_open('ConstanciaController/generarConstancia'); ?>
         <div class="centerText">
             <label>Tramite:</label>
-            <select name="opcionesImpresion">
+            <select name="tipoConstancia">
                 <option value="inscripcion">Inscripción</option>
                 <option value="otro">Otros (Titulación, baja temporal o definitiva)</option>
             </select>
