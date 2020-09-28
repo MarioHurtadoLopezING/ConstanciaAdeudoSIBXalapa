@@ -9,7 +9,10 @@
 <body id="bodyVisorConstancia">
 	<div id="divEspecificacionesConstancia">
 		<h4 id="h4NombreDocumento">Constancia de no adeudo.pdf</h4>
-		<img id="imgDescargaArchivo" src="<?php echo base_url(); ?>/recursosGraficos/descargar.png" alt="imagen descarga">
+		<?php echo form_open('ConstanciaController/descargarConstancia'); ?>
+			<input id="imgDescargaArchivo" title="boton enviar" alt="boton enviar" src="<?php echo base_url(); ?>/recursosGraficos/descargar.png" type="image" />
+			<!--<img id="imgDescargaArchivo" src="<?php echo base_url(); ?>/recursosGraficos/descargar.png" alt="imagen descarga">-->
+		</form>
 	</div>
 	<div id="divPadreContenidoConstancia">
 		<div id="divContenidoConstancia" class="">

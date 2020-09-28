@@ -1,6 +1,8 @@
 <?php
 class ConstanciaController extends  CI_Controller{
 
+    private $alumnoGeneral;
+
     public function __construct(){
         parent::__construct();
         $this->load->helper('url');
@@ -9,6 +11,7 @@ class ConstanciaController extends  CI_Controller{
         $this->load->model('AlumnoModelo','alumnoModelo');
         $this->load->library('Constancia');
         $this->load->model('ConstanciaModelo','constanciaModelo');
+        $this->load->library('session');
     }
 
     public function index(){
@@ -22,21 +25,32 @@ class ConstanciaController extends  CI_Controller{
     }
 
     public function generarConstancia(){
+        $idUsuarioPrueba = 43565;//601;
         $constancia = new constancia();
         $constancia -> setIConstancia(new ConstanciaModelo());
-        $constancia = $constancia->obtenerCantidadAdeudo(24228);
-        if($constancia -> getCantidadAdeudo() > 0){
+        $constancia = $constancia->obtenerCantidadAdeudo($idUsuarioPrueba);
+        $alumno = $this->obtenerAlumno($idUsuarioPrueba);
+        if($alumno->getIdAlumno() == 0){
+            echo "usuario no existe";
+        }else if($constancia -> getCantidadAdeudo() > 0){
             echo "el usuario tiene un adeudo de " . $constancia->getCantidadAdeudo() . " pesos";
+        }else if($constancia->obtenerPrestamosVigentes($idUsuarioPrueba)->getPrestamosVigentes() > 0){
+            echo "el usuario tiene prestamos vigentes";
         }else{
-            $alumno = $this->obtenerAlumno(24228);
-            if($alumno->getIdAlumno() == 0){
-                echo "usuario no existe";
-            }else{
-                $this->load->view("pages/paginaConstancia", $this->obtenerDatosAlumno($alumno));
-            }
+            $this->load->view("pages/paginaConstancia", $this->obtenerDatosAlumno($alumno));
         }
         /*$alumno = $this->obtenerAlumno(43565);*/
     }
+    /* public function getAlumno(){
+        return $this->alumno;
+    }*/
+
+    public function descargarConstancia(){
+        echo $this->session->userdata('nombreAlumno');
+        echo $this->session->userdata('matricula');
+        //$this->session->unset_userdata('datosAlumno');
+       // redirect('https://catbiblio.uv.mx');
+    } 
 
     private function obtenerDatosAlumno($alumno){
         $datosAlumno = array(
@@ -50,6 +64,7 @@ class ConstanciaController extends  CI_Controller{
             'anoActual' => date('Y'),
             'tramite' =>$this->input->post("tipoConstancia")=="inscripcion"?
                 "Inscripción":"Otros (Titulación, baja temporal o definitiva)");
+        $this->session->set_userdata($datosAlumno);
         return $datosAlumno;
     }
     
@@ -105,6 +120,4 @@ class ConstanciaController extends  CI_Controller{
     }
     
 }
-
-// echo $this->input->post("tipoConstancia");
 //echo $this->input->post("selectorImpresion");

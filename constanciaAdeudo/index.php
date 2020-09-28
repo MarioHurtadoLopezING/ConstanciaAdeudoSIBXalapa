@@ -97,7 +97,7 @@ switch (ENVIRONMENT)
  * This variable must contain the name of your "system" directory.
  * Set the path if it is not in the same directory as this file.
  */
-	$system_path = 'C:\Users\mario\OneDrive\Documentos\Archivos de servidor local SIB pruebas\system';
+	$system_path = 'C:\Users\marhurtado\Documents\GitHub\ConstanciaAdeudoSIBXalapa\system';
 
 /*
  *---------------------------------------------------------------
@@ -114,7 +114,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'C:\Users\mario\OneDrive\Documentos\Archivos de servidor local SIB pruebas\application';
+	$application_folder = 'C:\Users\marhurtado\Documents\GitHub\ConstanciaAdeudoSIBXalapa\application';
 
 /*
  *---------------------------------------------------------------

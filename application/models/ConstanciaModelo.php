@@ -31,14 +31,17 @@ class ConstanciaModelo extends CI_Model implements IConstancia {
     //queda pendiente a probar
     public function obtenerPrestamosVigentes($idAlumno){
         $constancia = new Constancia();
-        $this->db->select_sum('koha_pruebas.issues');
-        $consultaSql = $this->db->get_where('koha_pruebas.accountlines', 
+        $this->db->select('
+            issues.date_due,
+            issues.branchcode,
+            issues.issuedate');
+        $consultaSql = $this->db->get_where('koha_pruebas.issues', 
             array('issues.borrowernumber'=> $idAlumno));
         if($consultaSql -> num_rows() > 0){
-            $constancia -> setCantidadAdeudo($consultaSql->result()[0]->issues);
+            $constancia -> setPrestamosVigentes($consultaSql->num_rows());
             $constancia ->setIConstancia($this);
         }else{
-            $constancia -> setCantidadAdeudo(0);
+            $constancia -> setPrestamosVigentes(0);
         }
         return $constancia;
     }

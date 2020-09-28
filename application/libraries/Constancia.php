@@ -21,6 +21,14 @@ class Constancia{
 		return $this->cantidadAdeudo;
 	}
 
+	public function getPrestamosVigentes(){
+		return $this->prestamosVigentes;
+	}
+
+	public function setPrestamosVigentes($prestamosVigentes){
+		$this->prestamosVigentes = $prestamosVigentes;
+	}
+
 	public function setIConstancia($iConstancia){
 		$this->iConstancia = $iConstancia;
 	}
