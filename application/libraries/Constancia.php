@@ -1,10 +1,8 @@
 <?php
 class Constancia{
 
-    private $fechaExpedicion;
-	private $ciudad;
-	private $biblioteca;
-	private $tramite;
+	private $cantidadAdeudo;
+	private $prestamosVigentes;
 	private $iConstancia;
 
     public function __construct(){
@@ -15,40 +13,12 @@ class Constancia{
 		return $this->fechaExpedicion;
 	}
 
-	public function setFechaExpedicion($fechaExpedicion){
-		$this->fechaExpedicion = $fechaExpedicion;
+	public function setCantidadAdeudo($cantidadAdeudo){
+		$this->cantidadAdeudo = $cantidadAdeudo;
 	}
 
-	public function getCiudad(){
-		return $this->ciudad;
-	}
-
-	public function setCiudad($ciudad){
-		$this->ciudad = $ciudad;
-	}
-
-	public function getBiblioteca(){
-		return $this->biblioteca;
-	}
-
-	public function setBiblioteca($biblioteca){
-		$this->biblioteca = $biblioteca;
-	}
-
-	public function getAdeudo(){
-		return $this->adeudo;
-	}
-
-	public function setAdeudo($adeudo){
-		$this->adeudo = $adeudo;
-	}
-
-	public function getTramite(){
-		return $this->tramite;
-	}
-
-	public function setTramite($tramite){
-		$this->tramite = $tramite;
+	public function getCantidadAdeudo(){
+		return $this->cantidadAdeudo;
 	}
 
 	public function setIConstancia($iConstancia){
@@ -59,15 +29,12 @@ class Constancia{
 		return $this->iConstancia;
 	}
 
-	public function obtenerCiudadExpedicion(){
-
+	public function obtenerCantidadAdeudo($idAlumno){
+		return $this->iConstancia->obtenerCantidadAdeudo($idAlumno);
 	}
 
-	public function obtenerFechaExpedicion(){
-
+	public function obtenerPrestamosVigentes($idAlumno){
+		return $this->iConstancia->obtenerPrestamosVigentes($idAlumno);
 	}
 
-	public function obtenerBibliotecaExpeidicion(){
-
-	}
 }

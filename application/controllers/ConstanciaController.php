@@ -7,6 +7,8 @@ class ConstanciaController extends  CI_Controller{
         $this->load->helper('form');
         $this->load->library('Alumno');
         $this->load->model('AlumnoModelo','alumnoModelo');
+        $this->load->library('Constancia');
+        $this->load->model('ConstanciaModelo','constanciaModelo');
     }
 
     public function index(){
@@ -20,12 +22,20 @@ class ConstanciaController extends  CI_Controller{
     }
 
     public function generarConstancia(){
-        $alumno = $this->obtenerAlumno(43565);
-        if($alumno->getIdAlumno() == 0){
-            echo "usuario no existe";
+        $constancia = new constancia();
+        $constancia -> setIConstancia(new ConstanciaModelo());
+        $constancia = $constancia->obtenerCantidadAdeudo(24228);
+        if($constancia -> getCantidadAdeudo() > 0){
+            echo "el usuario tiene un adeudo de " . $constancia->getCantidadAdeudo() . " pesos";
         }else{
-            $this->load->view("pages/paginaConstancia", $this->obtenerDatosAlumno($alumno));
+            $alumno = $this->obtenerAlumno(24228);
+            if($alumno->getIdAlumno() == 0){
+                echo "usuario no existe";
+            }else{
+                $this->load->view("pages/paginaConstancia", $this->obtenerDatosAlumno($alumno));
+            }
         }
+        /*$alumno = $this->obtenerAlumno(43565);*/
     }
 
     private function obtenerDatosAlumno($alumno){
