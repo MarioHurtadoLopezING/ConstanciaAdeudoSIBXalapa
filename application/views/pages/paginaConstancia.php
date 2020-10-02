@@ -24,7 +24,7 @@
 					<label class="bold size">A quien corresponda:</label>
 				</div>
 				<div class="espacioAlineacionElemento">
-					<label class="size">El sistema bibliotecario de la Universidad Veracruzana ha verificado que:</label>
+					<label class="size">El sistema bibliotecario de la Universidad Veracruzana, ha verificado que:</label>
 				</div>
 				<div class="espacioAlineacionElemento">
 					<label class="bold size">Nombre:</label>
